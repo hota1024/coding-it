@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>coding-it</title>
+
+    <style>
+    .button {
+        padding: 10px 16px 10px 16px;
+        border: none;
+        border-radius: 4px;
+        outline: none;
+        transition: ease 200ms;
+    }
+
+    .button.run {
+        background-color: #8bc34a;
+        color: white;
+    }
+
+    .button.run:hover {
+        cursor: pointer;
+        background-color: #7cb342;
+    }
+
+    .button.run:active {
+        background-color: #689f38;
+    }
+
+    .button.reset {
+        background-color: #03a9f4;
+        color: white;
+    }
+
+    .button.reset:hover {
+        cursor: pointer;
+        background-color: #039be5;
+    }
+
+    .button.reset:active {
+        background-color: #0288d1;
+    }
+
+    .button.next {
+        background-color: #ff9800;
+        color: white;
+    }
+
+    .button.next:hover {
+        cursor: pointer;
+        background-color: #fb8c00;
+    }
+
+    .button.next:active {
+        background-color: #f57c00;
+    }
+
+    .button:disabled {
+        background-color: #fafafa !important;
+        color: black !important;
+    }
+    </style>
+</head>
+<body style="margin: 0">
+<xml id="startBlocks" style="display: none">
+    <block type="ci_exe" x="20" y="50"></block>
+</xml>
+<xml id="toolbox" style="display: none">
+    <block type="ci_move_forward"></block>
+    <block type="ci_turn_left"></block>
+    <block type="ci_turn_right"></block>
+    <block type="ci_control_repeat">
+        <value name="count">
+            <shadow type="math_number">
+                <field name="count">0</field>
+            </shadow>
+        </value>
+    </block>
+    <block type="ci_replace_lava"></block>
+    <block type="ci_push_button"></block>
+</xml>
+<div style="display: flex">
+    <div>
+        <div id="blocklyDiv" style="width: 600px; height: 100vh;"></div>
+    </div>
+    <div>
+        <canvas id="canvas" width="600px" height="600px">
+            <button>次へ</button>
+        </canvas>
+        <br>
+        <button class="button run" id="run-button" onclick="execute(this)">実行</button>
+        <button class="button reset" id="reset-button" onclick="reset(this)">リセット</button>
+        <button class="button next" id="next-button" style="display: none" onclick="next(this)">次へ</button>
+        <br>
+        <div>ブロックの数「<span id="blocksCount"></span>」個（「実行する」ブロックを含める）。</div>
+        <div>このステージは「<span id="minBlocks"></span>」個でクリアできます。</div>
+        <div>ヒント：<span id="hint"></span></div>
+    </div>
+<script src="./dist/index.js"></script>
+</body>
+</html>
